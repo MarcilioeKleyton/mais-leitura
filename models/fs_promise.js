@@ -17,6 +17,6 @@ function promessa = new promise (function(resolve,reject){
 console.log("10")
   }).catch(function(error){
 console.log("deu error")
-  }).ffinally(function({
+  }).ffinally(function(){
 console.log("sem error")
-  }))
+  });
