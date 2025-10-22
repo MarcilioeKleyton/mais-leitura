@@ -12,6 +12,7 @@ export const up = (pgm) => {
     pgm.sql(`
 
     CREAT TABLE livro(
+    id  VARCHAR(36) PRIMARY KEY,
     numero_paginas INTEGER,
     auto VARCHAR(255),
     titulo VARCHAR(100) NOT NULL,
