@@ -1,0 +1,46 @@
+/**
+ * @type {import('node-pg-migrate').ColumnDefinitions | undefined}
+ */
+export const shorthands = undefined;
+
+/**
+ * @param pgm {import('node-pg-migrate').MigrationBuilder}
+ * @param run {() => void | undefined}
+ * @returns {Promise<void> | void}
+ */
+export const up = (pgm) => {
+    pgm.sql(`
+
+    CREAT TABLE livro(
+    numero_paginas INTEGER,
+    auto VARCHAR(255),
+    titulo VARCHAR(100) NOT NULL,
+    genero VARCHAR(100) NOT NULL,
+    data_publicacao DATE,
+    Isbm TEXT,
+    resumo TEXT,
+    imagem_capa TEXT,
+    editora VARCHAR(255),
+    disponibilidade boolean default true,
+    tags TEXT,
+    preco NUMERIC(10, 2) default 0.0 
+);
+
+
+`)
+};
+
+
+
+
+
+/**
+ * @param pgm {import('node-pg-migrate').MigrationBuilder}
+ * @param run {() => void | undefined}
+ * @returns {Promise<void> | void}
+ */
+export const down = (pgm) => {
+    pgm.sql(`
+    DROP TABLE livro;
+`);
+};
