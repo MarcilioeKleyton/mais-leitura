@@ -9,31 +9,10 @@ export const shorthands = undefined;
  * @returns {Promise<void> | void}
  */
 export const up = (pgm) => {
-    pgm.sql(`
-
-    CREATE TABLE livro(
-    id  VARCHAR(36) PRIMARY KEY,
-    numero_paginas INTEGER,
-    auto VARCHAR(255),
-    titulo VARCHAR(100) NOT NULL,
-    genero VARCHAR(100) NOT NULL,
-    data_publicacao DATE,
-    Isbm TEXT,
-    resumo TEXT,
-    imagem_capa TEXT,
-    editora VARCHAR(255),
-    disponibilidade boolean default true,
-    tags TEXT,
-    preco NUMERIC(10, 2) default 0.0 
-);
-
-
-`)
+     pgm.sql(`
+    ALTER TABLE livro ADD COLUMN top_livro BOOLEAN DEFAULT false;
+`);
 };
-
-
-
-
 
 /**
  * @param pgm {import('node-pg-migrate').MigrationBuilder}
@@ -41,7 +20,7 @@ export const up = (pgm) => {
  * @returns {Promise<void> | void}
  */
 export const down = (pgm) => {
-    pgm.sql(`
-    DROP TABLE livro;
+     pgm.sql(`
+    ALTER TABLE livro ADD COLUMN top_livro;
 `);
 };
