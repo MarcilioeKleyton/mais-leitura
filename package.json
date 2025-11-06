@@ -12,13 +12,14 @@
     "test:watch": "jest --watch",
     "service:up": "docker compose up -d",
     "service:down": "docker compose down",
-    "migrate:create":"node-pg-migrate -m infra/migrations create",
+    "migrate:create": "node-pg-migrate -m infra/migrations create",
     "migrate:up": "node-pg-migrate -m infra/migrations --envPath .env up"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^17.2.3",
+    "express": "^5.1.0",
     "node-pg-migrate": "^8.0.3",
     "pg": "^8.16.3"
   }
