@@ -5,6 +5,23 @@ const app = express();
 
 app.get("/", async function (req, res) {
   const livrosTops = await livroRepository.consultaTops();
+  const livrosMaisAdquiridos = await livroRepository.consultaMaisAdquiridos();
+  const curtidas = await livroRepository.consultarCurtidas();
+
+  let itensTops = "";
+  for (livro of livrosTops) {
+    itensTops += `<li>${livro.titulo}</li>`;
+  }
+
+  let itensMaisAdquiridos = "";
+  for (livro of livrosMaisAdquiridos) {
+    itensMaisAdquiridos += `<li>${livro.titulo}</li>`;
+  }
+
+  let ncurtidas = "";
+  for (livro of curtidas) {
+    curtidas += `<li>${livro.titulo}</li>`;
+  }
 
   let html = `<!DOCTYPE html>
 <html lang="en">
@@ -15,13 +32,14 @@ app.get("/", async function (req, res) {
 </head>
 <body>
   <ul>
-`;
+    <p>Itens Tops</p>
+    <ul>
+    ${itensTops}
+    </ul>
 
-  for (livro of livrosTops) {
-    html += `<li>${livro.titulo}</li>`;
-  }
-
-  html += `
+    <p>Itens mais adquiridos</p>
+    <ul>
+    ${itensMaisAdquiridos}
     </ul>
   </body>
 </html>`;
@@ -29,7 +47,7 @@ app.get("/", async function (req, res) {
   res.send(html);
 });
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 app.listen(port, function () {
   console.log("Inicializando server");
 });

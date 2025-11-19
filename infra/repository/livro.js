@@ -15,4 +15,10 @@ const sql = `SELECT * FROM livro WHERE livros_mas_adiquiridos = true`;
 const resultados = await query(sql);
 return resultados;
 }
-module.exports = { consultarTodos, consultaTops, adiquiridos };
+
+async function consultarCurtidas() {
+const sql = `SELECT * FROM livro WHERE curtidas = 0`;
+const resultados = await query(sql);
+return resultados;
+}
+module.exports = { consultarTodos, consultaTops, consultaAdiquiridos, consultarCurtidas };
